@@ -1,4 +1,7 @@
 import streamlit as st
+import joblib
+import pandas as pd
+import matplotlib.pyplot as plt
 
 st.title("Restaurant Sales Forecast")
 
@@ -32,19 +35,11 @@ if st.button("Predict"):
     
     st.success(f"Predicted Sales: {prediction[0]:.2f}")
 
-    
+     ### Create a simple 7-day trend chart
 
-            # Create a simple 7-day trend chart
-            import pandas as pd
-            import matplotlib.pyplot as plt
+         # Stimulate next 7 days by decaying the lag value slightly
+    days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7']
+    trend_values = [predicted * (0.98 ** i) for i in range(7)]
 
-            # Stimulate next 7 days by decaying the lag value slightly
-            days = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7']
-            trend_values = [predicted * (0.98 ** i) for i in range(7)]
-
-            trend_df = pd.DataFrame({'Day': days, 'Predicted Sales': trend_values})
-            st.line_chart(trend_df.set_index('Day'))
-         
-        
-    else:
-            st.error(f"Error: {response.text}")
+    trend_df = pd.DataFrame({'Day': days, 'Predicted Sales': trend_values})
+    st.line_chart(trend_df.set_index('Day'))
