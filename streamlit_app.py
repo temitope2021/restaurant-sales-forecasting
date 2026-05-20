@@ -27,7 +27,7 @@ if st.button("Predict"):
     
     # Load the model and predict directly
     import joblib
-    model = joblib.load("best_sales_model.pkl")
+    model = joblib.load("models/best_sales_model.pkl")
     
     # Convert payload dict to a list in the right order for your model
     features = [[payload["sales_lag_7"], payload["weekday"], payload["is_holiday"]]]
