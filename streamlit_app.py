@@ -14,14 +14,9 @@ weekday_name = st.selectbox("weekday", options=list(weekday_map.keys()))
 weekday=weekday_map[weekday_name] # convert "monday" -> 0
 is_holiday = st.checkbox("Is Holiday")
 
+    
+    
 if st.button("Predict"):
-    payload = {"sales_lag_7": sales_lag_7,
-              "weekday": weekday, # this is now 0
-              "is_holiday": is_holiday
-               }
-    
-    
-   if st.button("Predict"):
     payload = {"sales_lag_7": sales_lag_7,
                "weekday": weekday, # this is now 0-6
                "is_holiday": is_holiday
@@ -36,9 +31,8 @@ if st.button("Predict"):
     prediction = model.predict(features)
     
     st.success(f"Predicted Sales: {prediction[0]:.2f}")
-            result = response.json()
-            predicted = result['predicted_units_sold']
-            st.success(f"Predicted units sold: {predicted:.2f}")
+
+    
 
             # Create a simple 7-day trend chart
             import pandas as pd
