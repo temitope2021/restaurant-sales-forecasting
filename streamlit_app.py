@@ -1,5 +1,4 @@
 import streamlit as st
-import requests
 
 st.title("Restaurant Sales Forecast")
 
@@ -22,9 +21,21 @@ if st.button("Predict"):
                }
     
     
-    response = requests.post("http://localhost:8009/predict", json=payload)
-
-    if response.status_code == 200:
+   if st.button("Predict"):
+    payload = {"sales_lag_7": sales_lag_7,
+               "weekday": weekday, # this is now 0-6
+               "is_holiday": is_holiday
+              }
+    
+    # Load the model and predict directly
+    import joblib
+    model = joblib.load("best_sales_model.pkl")
+    
+    # Convert payload dict to a list in the right order for your model
+    features = [[payload["sales_lag_7"], payload["weekday"], payload["is_holiday"]]]
+    prediction = model.predict(features)
+    
+    st.success(f"Predicted Sales: {prediction[0]:.2f}")
             result = response.json()
             predicted = result['predicted_units_sold']
             st.success(f"Predicted units sold: {predicted:.2f}")
