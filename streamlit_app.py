@@ -1,38 +1,27 @@
 import streamlit as st
 import joblib
 import pandas as pd
-import matplotlib.pyplot as plt
 
-st.title("Restaurant Sales Forecast")
+model = joblib.load("models/best_sales_model.pkl")
+model_columns = joblib.load("models/model_columns.pkl") # add this
 
-
-
-sales_lag_7 = st.number_input("Enter Sales Lag 7", value=100.0, min_value=0.0)
-
-weekday_map = {
-    "Monday": 0, "Tuesday": 1, "Wednesday": 2, "Thursday": 3, 
-    "Friday": 4, "Saturday": 5, "Sunday": 6
-    }
-weekday_name = st.selectbox("weekday", options=list(weekday_map.keys()))
-weekday=weekday_map[weekday_name] # convert "monday" -> 0
+sales_lag_7 = st.number_input("Sales lag 7", value=100)
+weekday = st.selectbox("Weekday", range(7))
 is_holiday = st.checkbox("Is Holiday")
 
-    
-    
 if st.button("Predict"):
-    payload = {"sales_lag_7": sales_lag_7,
-               "weekday": weekday, # this is now 0-6
-               "is_holiday": is_holiday
-              }
+    # Build a dict with all possible features, set missing ones to 0
+    input_dict = {
+        "sales_lag_7": sales_lag_7,
+        "weekday": weekday,
+        "is_holiday": int(is_holiday) # make sure it's 0/1 not True/False
+    }
     
-    # Load the model and predict directly
-    import joblib
-    model = joblib.load("models/best_sales_model.pkl")
+    # Convert to DataFrame with the exact columns the model expects
+    input_df = pd.DataFrame([input_dict])
+    input_df = input_df.reindex(columns=model_columns, fill_value=0)
     
-    # Convert payload dict to a list in the right order for your model
-    features = [[payload["sales_lag_7"], payload["weekday"], payload["is_holiday"]]]
-    prediction = model.predict(features)
-    
+    prediction = model.predict(input_df)
     st.success(f"Predicted Sales: {prediction[0]:.2f}")
 
      ### Create a simple 7-day trend chart
