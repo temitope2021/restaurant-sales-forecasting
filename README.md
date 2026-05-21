@@ -8,12 +8,14 @@ Built with Python, scikit-learn, and XGBoost.
 
 Predicts daily restaurant sales using a trained ML model.
 
+```markdown
 ## Api Deployment
 
 Run the FastAPI server locally:
 
 ```bash
 uvicorn api.main:app --port 8009 --reload
+
 
 ### Restaurant Sales Forecasting
 
