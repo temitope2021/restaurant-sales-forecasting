@@ -1,3 +1,10 @@
+# Restaurant Sales Forecasting App
+
+A Streamlit web app that predicts daily restaurant sales using a trained machine learning model. 
+Enter values like past sales, weekday, and holiday status to get instant sales predictions and a 7-day trend forecast.
+Built with Python, scikit-learn, and XGBoost.
+
+
 # Restaurant Sales Forecasting
 
 ## Project Overview
