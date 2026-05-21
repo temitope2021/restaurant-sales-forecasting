@@ -5,7 +5,7 @@ import pandas as pd
 model = joblib.load("models/best_sales_model.pkl")
 model_columns = joblib.load("models/model_columns.pkl") # add this
 
-st.title("Restaurant Sales Forecasting")
+st.title("🍽️ Restaurant Sales Forecasting")
 st.write("predict daily sales and view 7-day trends based on your inputs.")
 
 sales_lag_7 = st.number_input("Sales lag 7", value=100)

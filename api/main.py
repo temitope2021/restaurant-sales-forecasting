@@ -3,7 +3,6 @@ from pydantic import BaseModel
 import joblib
 import numpy as np
 import pandas as pd
-from api.schemas import Features # import from schemas.py
 
 app = FastAPI(title="Retail Sales Forecasting API")
 

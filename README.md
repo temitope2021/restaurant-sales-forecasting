@@ -4,6 +4,15 @@ A Streamlit web app that predicts daily restaurant sales using a trained machine
 Enter values like past sales, weekday, and holiday status to get instant sales predictions and a 7-day trend forecast.
 Built with Python, scikit-learn, and XGBoost.
 
+# Restaurant Sales Prediction
+
+Predicts daily restaurant sales using a trained ML model.
+
+## Api Deployment
+
+Run the FastAPI server locally:
+```bash
+uvicorn api.main:app --port 8009 --reload
 
 # Restaurant Sales Forecasting
 
