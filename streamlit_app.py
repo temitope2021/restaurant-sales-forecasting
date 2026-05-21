@@ -9,7 +9,8 @@ sales_lag_7 = st.number_input("Sales lag 7", value=100)
 weekday = st.selectbox("Weekday", range(7))
 is_holiday = st.checkbox("Is Holiday")
 
-input_dict = {
+if st.button("predict"):   
+    input_dict = {
     "sales_lag_7": sales_lag_7,
     "weekday": weekday,
     "is_holiday": int(is_holiday)
