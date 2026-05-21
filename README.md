@@ -11,10 +11,11 @@ Predicts daily restaurant sales using a trained ML model.
 ## Api Deployment
 
 Run the FastAPI server locally:
+
 ```bash
 uvicorn api.main:app --port 8009 --reload
 
-# Restaurant Sales Forecasting
+### Restaurant Sales Forecasting
 
 ## Project Overview
 This project forecasts restaurant unit sales using machine learning. It includes a trained XGBoost model, a FastAPI REST API for predictions, and a Streamlit web interface for users to interact with the model.
@@ -206,7 +207,6 @@ Beyond the numbers, the project reinforced that real-world data science is 80% c
 The final Streamlit app lets non-technical users interact with the model and get instant predictions, bridging the gap between analysis and decision-making. With the business recommendations and model in place, a restaurant can optimize staffing, inventory, and promotions to match demand.
 
 Future work could include integrating external factors like weather and holidays, and setting up automated retraining as new sales data comes in.
-
 
 
 
